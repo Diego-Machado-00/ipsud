@@ -13,7 +13,7 @@ include 'presentacion/menuAdministrador.php';
 				<div class="d-flex justify-content-between">
     					<div><h5>Buscar Pacientes</h5></div>
     					<div>
-    					<form action="index.php?pid=<?php echo base64_encode("presentacion/paciente/PDFBuscarPaciente.php")?>" method="post">
+    					<form action="index.php?pid=<?php echo base64_encode("presentacion/paciente/generarPDFpaciente.php")?>" method="post">
 							<button type="submit" name="PDFBuscar" class="btn btn-light">GenerarPDF</button>
 						</form>	
     					</div>
