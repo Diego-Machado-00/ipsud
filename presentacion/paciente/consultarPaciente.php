@@ -11,7 +11,7 @@ include 'presentacion/menuAdministrador.php';
 			<div class="card">
 				<div class="card-header bg-primary text-white">
 				<div class="d-flex justify-content-between">
-    					<div><h5>Buscar Pacientes</h5></div>
+    					<div><h4>Buscar Pacientes</h4></div>
     					<div>
     					<form action="index.php?pid=<?php echo base64_encode("presentacion/paciente/generarPDFpaciente.php")?>" method="post">
 							<button type="submit" name="PDFBuscar" class="btn btn-light">GenerarPDF</button>

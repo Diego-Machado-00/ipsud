@@ -18,6 +18,7 @@
 					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/paciente/buscarPaciente.php")?>">Buscar Paciente</a> 
 					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/paciente/consultarPaciente.php")?>">Paciente</a> 
 					<a class="dropdown-item" href="#">Medico</a>
+					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/paciente/generarPDFcitas.php")?>">PDF Citas</a>
 				</div></li>
 			<li class="nav-item"><a class="nav-link" href="index.php">Salida</a>
 			</li>
