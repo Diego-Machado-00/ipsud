@@ -1,7 +1,8 @@
 <?php
 require 'pdf/class.ezpdf.php';
 $cita = new Cita();
-$citas = $cita -> consultarTodos();
+$c = array();
+$c = $cita -> consultarTodos();
 $opciones = array('width' => '500');
 $cols = array('id' => 'ID',
     'fecha' => 'Fecha' ,
@@ -11,27 +12,42 @@ $cols = array('id' => 'ID',
     'consultorio' => 'Consultorio'
     
 );
-
+$cont=0;
 $pdf =new Cezpdf();
-foreach($citas as $ci){  
-    $i=0;
-    $pdf->ezNewPage();
+for($i=0; $i<sizeof($c);$i++){
+    $f=0;
     $pdf->selectFont('pdf/fonts/courier.afm');
-    $pdf->ezText("<b>Detalles Citas: Paciente ".$ci->getIdcita()."</b>\n", 30, array("justification" => "center") );
-    $datos[$i]=array(
-        "id" => $ci->getIdcita(),
-        "fecha" => $ci->getFecha(),
-        "hora" => $ci->getHora(),
-        "paciente" => $ci->getPaciente(),
-        "medico" => $ci->getMedico(),
-        "consultorio" => $ci->getConsultorio()
+    $pdf->ezText("<b>Detalles Citas: Paciente ".$c[$i]->getIdcita()."</b>\n", 30, array("justification" => "center") );
+    $datos[$f]=array(
+        "id" => $c[$i]->getIdcita(),
+        "fecha" => $c[$i]->getFecha(),
+        "hora" => $c[$i]->getHora(),
+        "paciente" => $c[$i]->getPaciente(),
+        "medico" => $c[$i]->getMedico(),
+        "consultorio" => $c[$i]->getConsultorio()
     );
+    for($j=$i+1;$j<sizeof($c);$j++){
+        if($c[$i]->getPaciente()==$c[$j]->getPaciente()){
+            $datos[$f+1]=array(
+                "id" => $c[$j]->getIdcita(),
+                "fecha" => $c[$j]->getFecha(),
+                "hora" => $c[$j]->getHora(),
+                "paciente" => $c[$j]->getPaciente(),
+                "medico" => $c[$j]->getMedico(),
+                "consultorio" => $c[$j]->getConsultorio()
+            );
+            $cont++;
+        }
+    }
     $pdf->ezTable($datos,$cols,"",$opciones);
     $pdf->ezText("\n\n\n",10);
     $pdf->ezText("<b>Fecha:</b> ".date("d/m/Y"),10);
     $pdf->ezText("<b>Hora:</b> ".date("H:i:s")."\n\n",10);
-    $i=$i+1;
+    $i=$i+$cont;
+    $pdf -> eznewPage();
+    
 }
+
 
 
 
